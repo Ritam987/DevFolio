@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Ritam Chatterjee — Full-Stack Web Developer building fast, accessible, and modern web experiences with HTML, CSS, JavaScript, and Tailwind.">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="color-scheme" content="dark light">
+    <meta name="author" content="Ritam Chatterjee">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ritam Chatterjee | Full-Stack Web Developer Portfolio">
+    <meta property="og:description" content="Building fast, accessible, and modern web experiences. Explore projects, skills, and contact.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:image" content="https://your-domain.com/og-image.jpg">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ritam Chatterjee | Full-Stack Web Developer Portfolio">
+    <meta name="twitter:description" content="Building fast, accessible, and modern web experiences.">
+    <meta name="twitter:image" content="https://your-domain.com/og-image.jpg">
+    <title>Ritam Chatterjee | Full-Stack Web Developer Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- AOS CSS for Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        // Use the 'class' strategy for dark mode
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'neon-main': '#06b6d4', // Cyan 500
+                        'neon-dark': '#0891b2', // Cyan 600
+                        'neon-accent': '#f43f5e', // Rose 500
+                        'bg-dark': '#0f172a', // Slate 900
+                        'card-dark': '#1e293b', // Slate 800
+                        'text-dark': '#f1f5f9', // Slate 100
+                    },
+                    boxShadow: {
+                        'neon-sm': '0 0 5px rgba(6, 182, 212, 0.7)',
+                        'neon-md': '0 0 15px rgba(6, 182, 212, 0.8), 0 0 25px rgba(6, 182, 212, 0.5)',
+                        'neon-lg': '0 0 30px rgba(6, 182, 212, 0.9), 0 0 50px rgba(6, 182, 212, 0.6)',
+                        'neon-accent-md': '0 0 10px rgba(244, 63, 94, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'sans-serif';
+            background-color: #0f172a; 
+            color: #f1f5f9;
+            scroll-behavior: smooth;
+        }
+        
+        .section-header-glow {
+            border-bottom: 2px solid #06b6d4;
+            padding-bottom: 0.25rem;
+            margin-bottom: 2.5rem;
+            display: inline-block;
+            text-shadow: 0 0 5px rgba(6, 182, 212, 0.7);
+        }
+        
+        .card-glow-hover {
+            transition: all 0.3s ease;
+        }
+        .card-glow-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.6), 0 0 20px rgba(6, 182, 212, 0.3);
+            border-color: #06b6d4;
+        }
+
+        @keyframes float { 0% { transform: translatey(0px); } 50% { transform: translatey(-10px); } 100% { transform: translatey(0px); } }
+        .floating-icon { animation: float 4s ease-in-out infinite; }
+
+        .timeline-item { position: relative; padding-left: 20px; margin-bottom: 30px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: 0; top: 5px; width: 10px; height: 10px; border-radius: 50%;
+            background-color: #06b6d4; box-shadow: 0 0 8px rgba(6, 182, 212, 0.8);
+        }
+
+        .timeline-line { position: absolute; left: 4px; top: 15px; bottom: -30px; width: 2px; background-color: #334155; }
+
+        #organizations .timeline-item:last-child .timeline-line,
+        #experience .timeline-item:last-child .timeline-line { display: none; }
+
+        @keyframes subtle-glow { 0% { opacity: 0.1; } 50% { opacity: 0.25; } 100% { opacity: 0.1; } }
+        .background-glow-effect {
+            pointer-events: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden;
+        }
+        .background-glow-effect::after {
+            content: ''; position: absolute; width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.4), transparent 70%);
+            top: 10%; left: 50%; transform: translate(-50%, -50%); animation: subtle-glow 15s ease-in-out infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loader {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid currentColor;
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spin .75s linear infinite;
+        }
+        
+        /* Preloader Styles */
+        .preloader {
+            transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+        }
+        .preloader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.7s ease-in;
+        }
+        .main-content-visible {
+            opacity: 1;
+        }
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 15px rgba(6, 182, 212, 0.8), 0 0 25px rgba(6, 182, 212, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 30px rgba(6, 182, 212, 0.9), 0 0 50px rgba(6, 182, 212, 0.6);
+            }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Mobile Menu Transition */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-bg-dark text-text-dark min-h-screen">
+
+    <!-- =========== PRELOADER SECTION =========== -->
+    <div id="preloader" class="preloader fixed inset-0 z-50 flex items-center justify-center bg-bg-dark">
+        <div class="text-5xl font-extrabold text-neon-main animate-pulse-glow">
+            DevFolio
+        </div>
+    </div>
+    <!-- =========== END PRELOADER SECTION =========== -->
+
+    <!-- This is the main content wrapper that fades in after the preloader -->
+    <div id="main-content" class="main-content">
+        <!-- Background decorative effects -->
+        <div class="background-glow-effect"></div>
+
+        <div class="fixed bottom-0 right-0 p-4 opacity-50 z-0 hidden md:block">
+            <i data-lucide="sparkles" class="w-16 h-16 text-neon-main floating-icon"></i>
+        </div>
+
+        <!-- =========== HEADER & NAVIGATION BAR =========== -->
+        <header class="bg-bg-dark/80 backdrop-blur-sm shadow-xl border-b border-gray-700/50 sticky top-0 z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-extrabold text-neon-main shadow-neon-sm rounded-lg p-2">DevFolio</a>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#about" class="text-gray-300 hover:text-neon-main transition duration-300">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-neon-main transition duration-300">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-neon-main transition duration-300">Projects</a>
+                    <a href="#experience" class="text-gray-300 hover:text-neon-main transition duration-300">Experience</a>
+                    <a href="#organizations" class="text-gray-300 hover:text-neon-main transition duration-300">Involvement</a>
+                    <a href="#contact" class="px-5 py-2 ml-4 bg-neon-dark text-white rounded-full shadow-lg hover:bg-neon-main transition duration-300">Contact Now</a>
+                </nav>
+                <!-- Mobile Menu Button (Hamburger Icon) -->
+                <button id="menu-button" class="md:hidden p-2 rounded-lg text-gray-300 hover:bg-card-dark focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+                    <i id="menu-icon-open" data-lucide="menu" class="w-6 h-6"></i>
+                    <i id="menu-icon-close" data-lucide="x" class="w-6 h-6 hidden"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t-2 border-neon-main/30 shadow-neon-lg">
+                    <a href="#about" class="mobile-menu-link block text-gray-300 hover:text-white hover:bg-gradient-to-r from-neon-dark to-bg-dark rounded-md px-3 py-2 text-base font-medium transition duration-300">About</a>
+                    <a href="#skills" class="mobile-menu-link block text-gray-300 hover:text-white hover:bg-gradient-to-r from-neon-dark to-bg-dark rounded-md px-3 py-2 text-base font-medium transition duration-300">Skills</a>
+                    <a href="#projects" class="mobile-menu-link block text-gray-300 hover:text-white hover:bg-gradient-to-r from-neon-dark to-bg-dark rounded-md px-3 py-2 text-base font-medium transition duration-300">Projects</a>
+                    <a href="#experience" class="mobile-menu-link block text-gray-300 hover:text-white hover:bg-gradient-to-r from-neon-dark to-bg-dark rounded-md px-3 py-2 text-base font-medium transition duration-300">Experience</a>
+                    <a href="#organizations" class="mobile-menu-link block text-gray-300 hover:text-white hover:bg-gradient-to-r from-neon-dark to-bg-dark rounded-md px-3 py-2 text-base font-medium transition duration-300">Involvement</a>
+                    <a href="#contact" class="mobile-menu-link block text-gray-300 hover:text-white hover:bg-gradient-to-r from-neon-dark to-bg-dark rounded-md px-3 py-2 text-base font-medium transition duration-300">Contact Now</a>
+                </div>
+            </div>
+        </header>
+        <!-- =========== END HEADER & NAVIGATION BAR =========== -->
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- =========== HERO SECTION =========== -->
+            <section id="hero" class="pt-20 pb-28 md:pt-32 md:pb-40 flex flex-col md:flex-row items-center justify-between text-center md:text-left space-y-12 md:space-y-0">
+                <!-- Left side content: Title, Subtitle, CTA buttons -->
+                <div class="md:w-3/5" data-aos="fade-right">
+                    <p class="text-xl font-mono text-neon-main mb-4 tracking-wider">/init Ritam Chatterjee()</p>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+                        <span class="bg-gradient-to-r from-neon-main via-sky-400 to-neon-accent text-transparent bg-clip-text drop-shadow-[0_2px_4px_rgba(6,182,212,0.6)]">Full-Stack Web Developer and Designer</span>
+                    </h1>
+                    <p class="text-3xl md:text-4xl font-extrabold mb-8 mt-4">
+                        <span class="text-neon-main inline-block p-2 rounded-lg shadow-neon-sm">Building Digital Experiences.</span>
+                    </p>
+                    <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-xl">
+                        Passionate about Digital Electronics & Computer Architecture while translating HTML, CSS, and JavaScript into robust, project-based solutions.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#projects" class="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-neon-main to-neon-accent text-white font-semibold rounded-full hover:brightness-110 hover:scale-105 transform transition duration-300 shadow-neon-md">Explore Projects</a>
+                        <!-- YOUR GITHUB LINK: Replace the href with your GitHub profile URL -->
+                        <a href=" https://github.com/Ritam987" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3 bg-gray-700 text-gray-200 font-semibold rounded-full border border-gray-600 hover:border-neon-main transition duration-300 flex items-center justify-center space-x-2">
+                            <i data-lucide="github" class="w-5 h-5"></i>
+                            <span>Ritam987 GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Right side content: Profile Picture and Social Links -->
+                <div class="md:w-2/5 flex flex-col items-center justify-center relative" data-aos="zoom-in">
+                    <div class="w-64 h-64 bg-card-dark rounded-full flex items-center justify-center shadow-neon-lg border-4 border-neon-main overflow-hidden transition duration-500 hover:shadow-neon-lg hover:scale-[1.03]">
+                        <!-- YOUR PROFILE PICTURE: The src attribute contains your uploaded image. -->
+                        <img src="profile pic.jpg" loading="lazy" alt="Profile Picture" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/256x256/1f2937/ffffff?text=RC';">
+                    </div>
+                    <!-- Social Media Links Bar -->
+                    <div class="mt-8 flex space-x-4 p-2 rounded-xl bg-card-dark/50 backdrop-blur-sm shadow-neon-md border border-gray-700" data-aos="fade-up" data-aos-delay="500">
+                        <!-- YOUR GITHUB LINK -->
+                        <a href="https://github.com/Ritam987" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-bg-dark shadow-neon-sm text-neon-main hover:text-neon-accent transition duration-300" title="GitHub"><i data-lucide="github" class="w-5 h-5"></i></a>
+                        <!-- YOUR LINKEDIN PROFILE LINK -->
+                        <a href="https://www.linkedin.com/in/ritam-chatterjee-971682335/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-bg-dark shadow-neon-sm text-neon-main hover:text-neon-accent transition duration-300" title="LinkedIn"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <!-- YOUR FACEBOOK PROFILE LINK -->
+                        <a href="https://www.facebook.com/ritam.chatterjee.9634" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-bg-dark shadow-neon-sm text-neon-main hover:text-neon-accent transition duration-300" title="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <!-- YOUR INSTAGRAM PROFILE LINK -->
+                        <a href="https://www.instagram.com/rtm_chtrje/?hl=en" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-bg-dark shadow-neon-sm text-neon-main hover:text-neon-accent transition duration-300" title="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <!-- YOUR WHATSAPP LINK: Replace with your number -->
+                        <a href="https://wa.me/919832690351" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-bg-dark shadow-neon-sm text-neon-main hover:text-neon-accent transition duration-300" title="WhatsApp">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.34 3.51 16.82L2.1 21.9L7.29 20.5C8.75 21.37 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2M12.04 3.67C16.56 3.67 20.28 7.38 20.28 11.91C20.28 16.44 16.56 20.15 12.04 20.15C10.56 20.15 9.12 19.78 7.85 19.07L7.4 18.83L4.26 19.74L5.18 16.68L4.93 16.23C4.19 14.93 3.8 13.45 3.8 11.91C3.8 7.38 7.52 3.67 12.04 3.67M9.07 7.29C8.84 7.29 8.61 7.35 8.42 7.54C8.23 7.73 7.72 8.24 7.72 9.25C7.72 10.26 8.44 11.23 8.56 11.38C8.68 11.53 10.05 13.81 12.31 14.73C14.16 15.51 14.56 15.42 14.92 15.38C15.42 15.32 16.22 14.87 16.42 14.28C16.61 13.69 16.61 13.18 16.55 13.08C16.49 12.98 16.3 12.92 16.05 12.78C15.81 12.64 14.56 12.02 14.32 11.93C14.08 11.83 13.91 11.79 13.74 12.03C13.57 12.27 13.06 12.86 12.91 13.03C12.77 13.21 12.62 13.24 12.38 13.1C12.14 12.96 11.19 12.64 10.05 11.64C9.15 10.84 8.53 9.87 8.39 9.63C8.24 9.39 8.36 9.27 8.48 9.15C8.59 9.04 8.72 8.87 8.84 8.73C8.96 8.59 9.01 8.48 9.11 8.29C9.21 8.09 9.16 7.91 9.07 7.77V7.77Z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+            <!-- =========== END HERO SECTION =========== -->
+
+            <!-- Section Divider -->
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-neon-dark to-transparent my-10 rounded-full"></div>
+
+            <!-- =========== ABOUT ME SECTION =========== -->
+            <section id="about" class="py-16">
+                <h2 class="text-3xl font-bold text-text-dark section-header-glow mb-10" data-aos="fade-down">/01 Core Summary & Mission</h2>
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="md:col-span-2" data-aos="fade-up">
+                        <div id="about-me-content">
+                            <p class="text-lg text-gray-300 mb-6">I'm currently pursuing my Bachelor of Computer Applications (**BCA, 2nd year, 3rd semester**) at Dr. B.C. Roy Academy of Professional Courses. My mission is to become a **Skilled Software Developer or Full-Stack Web Developer** by working on real-world projects to sharpen my hands-on experience.</p>
+                            <p class="text-lg text-gray-300 mb-6">My philosophy revolves around leveraging my self-employed and **freelance project-based experience** to tackle real-world challenges. I strive to combine the technical logic strengthened through C programming and Python with clean code practices in HTML, CSS, and JavaScript to build user-friendly and responsive interfaces.</p>
+                        </div>
+                        <!-- YOUR RESUME FILE: Replace href with the path to your resume PDF file -->
+                        <a href="Ritam Chatterjee_Resume.pdf" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-neon-main to-neon-accent text-white font-semibold rounded-full hover:brightness-110 hover:scale-105 transform transition duration-300 shadow-neon-md">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            <span>Download My Resume</span>
+                        </a>
+                    </div>
+                    <div class="md:col-span-1 bg-card-dark p-6 rounded-xl shadow-xl border border-gray-700 hover:shadow-neon-accent-md transition duration-300" data-aos="fade-left">
+                         <h3 class="text-xl font-bold text-neon-accent mb-3 flex items-center space-x-2"><i data-lucide="target" class="w-5 h-5"></i><span>Current Focus</span></h3>
+                        <p class="text-sm text-gray-400 mb-4">Alongside core programming, I'm studying Digital Electronics, Computer Architecture, Principles of Management, and Marketing, giving me a broad understanding of both technical and business fundamentals.</p>
+                        <a href="#skills" class="text-neon-accent hover:text-neon-main font-medium flex items-center space-x-1"><span>View Detailed Skills</span><i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </section>
+            <!-- =========== END ABOUT ME SECTION =========== -->
+
+            <!-- Section Divider -->
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-neon-dark to-transparent my-10 rounded-full"></div>
+
+            <!-- =========== SKILLS SECTION =========== -->
+            <section id="skills" class="py-16">
+                <h2 class="text-3xl font-bold text-text-dark section-header-glow mb-12" data-aos="fade-down">/02 Detailed Technology Stack</h2>
+                <div class="grid lg:grid-cols-3 gap-10">
+                    <!-- Front-End Skills -->
+                    <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700" data-aos="fade-up">
+                        <h3 class="text-xl font-bold text-neon-main mb-4 flex items-center space-x-2"><i data-lucide="layout" class="w-5 h-5"></i><span>Front-End & Design</span></h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">HTML5</span>
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">CSS3</span>
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">Tailwind CSS</span>
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">JavaScript</span>
+                        </div>
+                    </div>
+                    <!-- Programming Skills -->
+                    <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-xl font-bold text-neon-main mb-4 flex items-center space-x-2"><i data-lucide="server" class="w-5 h-5"></i><span>Programming & Scripting</span></h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">Python</span>
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">C Language</span>
+                        </div>
+                    </div>
+                    <!-- Tools -->
+                    <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                        <h3 class="text-xl font-bold text-neon-main mb-4 flex items-center space-x-2"><i data-lucide="git-branch" class="w-5 h-5"></i><span>Tools & Version Control</span></h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">Git / GitHub</span>
+                            <span class="text-sm bg-gray-700 text-gray-300 px-3 py-1 rounded-full hover:bg-neon-dark transition duration-300">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- =========== END SKILLS SECTION =========== -->
+            
+            <!-- Section Divider -->
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-neon-dark to-transparent my-10 rounded-full"></div>
+            
+            <!-- =========== PROJECTS SECTION =========== -->
+            <section id="projects" class="py-16">
+                <h2 class="text-3xl font-bold text-text-dark section-header-glow mb-12" data-aos="fade-down">/03 Featured Projects</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="bg-card-dark rounded-xl shadow-xl border border-gray-700 overflow-hidden transition duration-500 card-glow-hover" data-aos="zoom-in-up">
+                        <div class="p-6">
+                            <h3 class="project-title text-xl font-bold text-text-dark mt-4 mb-3">IIT Bombay E-Cell Blog</h3>
+                            <p class="project-description text-gray-400 mb-6 text-sm">Developed a responsive blogging and information portal to support the IIT Bombay E-Cell event. Focused on highly readable content, categorized articles, and quick, accessible navigation.</p>
+                            <div class="project-tech-stack flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">HTML5</span>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">Tailwind CSS</span>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">JavaScript</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <!-- YOUR PROJECT LINK: Add the live demo link for this project -->
+                                <div><a href="#" target="_blank" rel="noopener noreferrer" class="text-neon-main hover:text-neon-dark font-semibold flex items-center space-x-1 transition duration-300"><i data-lucide="external-link" class="w-4 h-4"></i><span>Live Demo</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="bg-card-dark rounded-xl shadow-xl border border-gray-700 overflow-hidden transition duration-500 card-glow-hover" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="p-6">
+                            <h3 class="project-title text-xl font-bold text-text-dark mt-4 mb-3">F.E.S. Business Landing Portal</h3>
+                            <p class="project-description text-gray-400 mb-6 text-sm">Created a professional website for Friends Electric & Sounds with a focus on business lending and lead generation. Implemented form validation and a basic eligibility calculator.</p>
+                            <div class="project-tech-stack flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">JavaScript</span>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">Python (Logic)</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                                <!-- YOUR PROJECT LINK: Add the live demo link for this project -->
+                                <div><a href="#" target="_blank" rel="noopener noreferrer" class="text-neon-main hover:text-neon-dark font-semibold flex items-center space-x-1 transition duration-300"><i data-lucide="external-link" class="w-4 h-4"></i><span>Live Demo</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="bg-card-dark rounded-xl shadow-xl border border-gray-700 overflow-hidden transition duration-500 card-glow-hover" data-aos="zoom-in-up" data-aos-delay="400">
+                        <div class="p-6">
+                            <h3 class="project-title text-xl font-bold text-text-dark mt-4 mb-3">Marketplace E-commerce Prototype</h3>
+                            <p class="project-description text-gray-400 mb-6 text-sm">Designed and prototyped a feature-rich E-commerce marketplace interface. Key functionalities include product catalog filtering, user cart simulation, and a complex Grid/Flexbox responsive layout.</p>
+                            <div class="project-tech-stack flex flex-wrap gap-2 mb-6">
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">JavaScript</span>
+                                <span class="text-xs bg-gray-700 text-gray-300 px-2 py-0.5 rounded-lg">Grid / Flexbox</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm">
+                               <!-- YOUR PROJECT LINK: Add the live demo link for this project -->
+                               <div><a href="#" target="_blank" rel="noopener noreferrer" class="text-neon-main hover:text-neon-dark font-semibold flex items-center space-x-1 transition duration-300"><i data-lucide="external-link" class="w-4 h-4"></i><span>Live Demo</span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- =========== END PROJECTS SECTION =========== -->
+
+            <!-- Section Divider -->
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-neon-dark to-transparent my-10 rounded-full"></div>
+
+            <!-- =========== EXPERIENCE SECTION =========== -->
+            <section id="experience" class="py-16">
+                <h2 class="text-3xl font-bold text-text-dark section-header-glow mb-10" data-aos="fade-down">/04 Professional Experience</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-line"></div>
+                        <div class="bg-card-dark p-6 rounded-xl shadow-xl border border-gray-700 card-glow-hover">
+                            <h3 class="text-xl font-bold text-text-dark">Self-Employed & Freelance Developer</h3>
+                            <p class="text-neon-main font-semibold mb-2">Project-Based Work (Ongoing)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-line"></div>
+                        <div class="bg-card-dark p-6 rounded-xl shadow-xl border border-gray-700 card-glow-hover">
+                            <h3 class="text-xl font-bold text-text-dark">Academic Project Lead</h3>
+                            <p class="text-neon-main font-semibold mb-2">Dr. B. C. Roy Academy (Ongoing)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- =========== END EXPERIENCE SECTION =========== -->
+            
+            <!-- Section Divider -->
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-neon-dark to-transparent my-10 rounded-full"></div>
+            
+            <!-- =========== ORGANIZATIONAL INVOLVEMENT SECTION =========== -->
+            <section id="organizations" class="py-16">
+                <h2 class="text-3xl font-bold text-text-dark section-header-glow mb-10" data-aos="fade-down">/05 Organizational Involvement</h2>
+                <div class="max-w-4xl mx-auto">
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-line"></div>
+                        <div class="bg-card-dark p-6 rounded-xl shadow-xl border border-gray-700 card-glow-hover">
+                            <h3 class="text-xl font-bold text-text-dark">Computer Society of India (CSI)</h3>
+                            <p class="text-neon-main font-semibold mb-2">Student Member (Jun 2025 - Present)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="bg-card-dark p-6 rounded-xl shadow-xl border border-gray-700 card-glow-hover">
+                            <h3 class="text-xl font-bold text-text-dark">Institute of Electrical and Electronics Engineers (IEEE)</h3>
+                            <p class="text-neon-main font-semibold mb-2">Student Member (Jun 2025 - Present)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- =========== END ORGANIZATIONAL INVOLVEMENT SECTION =========== -->
+
+            <!-- Section Divider -->
+            <div class="w-full h-1 bg-gradient-to-r from-transparent via-neon-dark to-transparent my-10 rounded-full"></div>
+            
+            <!-- =========== CONTACT FORM SECTION =========== -->
+            <section id="contact" class="py-16">
+                <h2 class="text-3xl font-bold text-text-dark section-header-glow mb-12" data-aos="fade-down">/06 Contact Me</h2>
+                <div class="max-w-xl mx-auto p-8 bg-card-dark rounded-xl shadow-neon-md border border-neon-dark" data-aos="zoom-in">
+                    <!-- Contact form submits via Formspree -->
+                    <form action="https://formspree.io/f/mgvnrlpo" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Name</label>
+                            <input type="text" name="name" id="name" required class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-text-dark focus:ring-neon-main focus:border-neon-main transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your Email</label>
+                            <input type="email" name="email" id="email" required class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-text-dark focus:ring-neon-main focus:border-neon-main transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Your Message</label>
+                            <textarea name="message" id="message" rows="4" required class="w-full p-3 rounded-lg bg-bg-dark border border-gray-700 text-text-dark focus:ring-neon-main focus:border-neon-main transition"></textarea>
+                        </div>
+                        <input type="hidden" name="_next" value="/thankyou.html">
+                        <button type="submit" class="w-full px-8 py-3 bg-gradient-to-r from-neon-main to-neon-accent text-white text-lg font-semibold rounded-xl hover:brightness-110 hover:scale-105 transform transition duration-300 shadow-lg">
+                            <span class="flex items-center justify-center space-x-3">
+                                <i data-lucide="send" class="w-5 h-5"></i>
+                                <span>Send Message</span>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+            <!-- =========== END CONTACT FORM SECTION =========== -->
+
+        </main>
+
+        <!-- =========== FOOTER SECTION =========== -->
+        <footer class="bg-bg-dark border-t border-gray-700 mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                <p>&copy; 2024 Ritam Chatterjee - Web Developer Portfolio.</p>
+                <div class="flex space-x-5 mt-4 md:mt-0 text-gray-300">
+                    <!-- YOUR SOCIAL MEDIA LINKS IN FOOTER -->
+                    <a href="https://github.com/Ritam987" target="_blank" rel="noopener noreferrer" class="hover:text-neon-main transition duration-300" title="GitHub"><i data-lucide="github" class="w-6 h-6"></i></a>
+                    <a href="https://www.linkedin.com/in/ritam-chatterjee-971682335/" target="_blank" rel="noopener noreferrer" class="hover:text-neon-main transition duration-300" title="LinkedIn"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+                    <a href="https://www.facebook.com/ritam.chatterjee.9634" target="_blank" rel="noopener noreferrer" class="hover:text-neon-main transition duration-300" title="Facebook"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                    <a href="https://www.instagram.com/rtm_chtrje/?hl=en" target="_blank" rel="noopener noreferrer" class="hover:text-neon-main transition duration-300" title="Instagram"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    <a href="https://wa.me/919832690351" target="_blank" rel="noopener noreferrer" class="hover:text-neon-main transition duration-300" title="WhatsApp">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                           <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.61 15.34 3.51 16.82L2.1 21.9L7.29 20.5C8.75 21.37 10.36 21.82 12.04 21.82C17.5 21.82 21.95 17.37 21.95 11.91C21.95 6.45 17.5 2 12.04 2M12.04 3.67C16.56 3.67 20.28 7.38 20.28 11.91C20.28 16.44 16.56 20.15 12.04 20.15C10.56 20.15 9.12 19.78 7.85 19.07L7.4 18.83L4.26 19.74L5.18 16.68L4.93 16.23C4.19 14.93 3.8 13.45 3.8 11.91C3.8 7.38 7.52 3.67 12.04 3.67M9.07 7.29C8.84 7.29 8.61 7.35 8.42 7.54C8.23 7.73 7.72 8.24 7.72 9.25C7.72 10.26 8.44 11.23 8.56 11.38C8.68 11.53 10.05 13.81 12.31 14.73C14.16 15.51 14.56 15.42 14.92 15.38C15.42 15.32 16.22 14.87 16.42 14.28C16.61 13.69 16.61 13.18 16.55 13.08C16.49 12.98 16.3 12.92 16.05 12.78C15.81 12.64 14.56 12.02 14.32 11.93C14.08 11.83 13.91 11.79 13.74 12.03C13.57 12.27 13.06 12.86 12.91 13.03C12.77 13.21 12.62 13.24 12.38 13.1C12.14 12.96 11.19 12.64 10.05 11.64C9.15 10.84 8.53 9.87 8.39 9.63C8.24 9.39 8.36 9.27 8.48 9.15C8.59 9.04 8.72 8.87 8.84 8.73C8.96 8.59 9.01 8.48 9.11 8.29C9.21 8.09 9.16 7.91 9.07 7.77V7.77Z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="mt-4 md:mt-0">Built with Code and Passion.</p>
+            </div>
+        </footer>
+        <!-- =========== END FOOTER SECTION =========== -->
+    </div>
+
+    <!-- =========== JAVASCRIPT LIBRARIES & CUSTOM SCRIPT =========== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS (Animate on Scroll) library
+        AOS.init({ duration: 1000, once: true });
+        
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        
+        // --- Preloader Logic ---
+        const preloader = document.getElementById('preloader');
+        const mainContent = document.getElementById('main-content');
+        
+        window.addEventListener('load', () => {
+            // Wait for 1.5 seconds before fading out the preloader
+            setTimeout(() => {
+                if (preloader) {
+                    preloader.classList.add('preloader-hidden');
+                }
+                if(mainContent) {
+                    mainContent.classList.add('main-content-visible');
+                }
+                
+                // Remove preloader from DOM after transition ends
+                setTimeout(() => {
+                    if (preloader) {
+                        preloader.remove();
+                    }
+                }, 700);
+            }, 1500); 
+        });
+
+        // --- Mobile Menu Toggle Logic ---
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        if (menuButton && mobileMenu && menuIconOpen && menuIconClose) {
+            menuButton.addEventListener('click', () => {
+                // Toggle icon visibility
+                menuIconOpen.classList.toggle('hidden');
+                menuIconClose.classList.toggle('hidden');
+
+                // Toggle menu with slide animation + accessibility
+                if (mobileMenu.style.maxHeight) {
+                    mobileMenu.style.maxHeight = null;
+                    menuButton.setAttribute('aria-expanded', 'false');
+                } else {
+                    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+                    menuButton.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            // Close menu when a link is clicked
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.style.maxHeight = null;
+                    menuIconOpen.classList.remove('hidden');
+                    menuIconClose.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        // (Removed) Gemini API integration and AI project description generator
+    </script>
+</body>
+</html>
