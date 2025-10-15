@@ -1,35 +1,93 @@
-# Ritam Chatterjee – Portfolio
+# DevFolio - Personal Portfolio Website
 
-Static portfolio site built with HTML, Tailwind CSS, and a serverless contact form (Formspree). Designed to run on GitHub Pages.
+A modern, responsive portfolio website showcasing my work as a Full-Stack Web Developer. Built with HTML, CSS (Tailwind CSS), and JavaScript.
 
-## Files
-- `index.html` – main site
-- `thankyou.html` – redirect page after successful contact form submission
-- `Ritam Chatterjee_Resume.pdf` – your resume (place in repo root or update the link in `index.html`)
+## 🌟 Features
 
-## Local preview
-Open `index.html` in a browser. No build steps required.
+- Responsive design that works on all devices
+- Dark mode optimized interface
+- Smooth scroll animations using AOS library
+- Interactive project cards with hover effects
+- Mobile-friendly navigation
+- Contact form
+- Loading animations and transitions
+- Professional sections for:
+  - About Me
+  - Skills & Technologies
+  - Featured Projects
+  - Professional Experience
+  - Organizational Involvement
+  - Contact Information
 
-## Contact form (Formspree)
-- Endpoint: `https://formspree.io/f/mgvnrlpo`
-- Fields: `name`, `email`, `message`
-- Success redirect: `/thankyou.html` via hidden `_next` input
-- Manage submissions and email notifications in your Formspree dashboard.
+## 🚀 Technologies Used
 
-## Deploy to GitHub Pages
-1. Create a new public repo (or push this folder to an existing repo).
-2. Commit and push all files, including `index.html` and `thankyou.html`.
-3. In GitHub: Settings → Pages → Build and deployment → Source: `Deploy from a branch`.
-4. Branch: `main` (or `master`), Folder: `/ (root)`. Save.
-5. Wait for Pages to publish, then open the provided URL.
+- HTML5
+- Tailwind CSS
+- JavaScript
+- AOS (Animate on Scroll)
+- Lucide Icons
+- Inter Font Family
 
-## Customization checklist
-- Update social links in `index.html`.
-- Replace `og:url` and `og:image` in `<head>` with your real domain and preview image.
-- Ensure `Ritam Chatterjee_Resume.pdf` is present or update the resume link.
+## 🛠️ Setup and Installation
 
-## Security
-All external links that open in a new tab use `rel="noopener noreferrer"`.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/portfolio.git
+   ```
 
-## License
-This portfolio content is © Ritam Chatterjee. Code snippets may be reused with attribution.
+2. Navigate to the project directory:
+   ```bash
+   cd portfolio
+   ```
+
+3. Open `index.html` in your web browser to view the website locally.
+
+## 📂 Project Structure
+
+```
+portfolio/
+├── index.html          # Main HTML file
+├── profile pic.jpg     # Profile image
+├── thankyou.html       # Thank you page
+└── README.md          # Project documentation
+```
+
+## 🎨 Customization
+
+1. Replace the profile picture in `profile pic.jpg` with your own image
+2. Update the content in `index.html`:
+   - Personal information
+   - Skills and technologies
+   - Projects
+   - Experience
+   - Contact information
+
+## 🌐 Deployment
+
+The site can be deployed using GitHub Pages:
+
+1. Go to your repository settings
+2. Navigate to the "Pages" section
+3. Select the main branch as the source
+4. Save the changes
+
+Your portfolio will be available at `https://your-username.github.io/portfolio`
+
+## 🤝 Contributing
+
+Feel free to fork this repository and customize it for your own use. If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👤 Author
+
+Ritam Chatterjee
+- Portfolio: [Your Portfolio URL]
+- LinkedIn: [Your LinkedIn URL]
+- GitHub: [Your GitHub URL]
+
+---
+
+⭐️ If you like this portfolio template, please give it a star!
